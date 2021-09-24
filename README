@@ -1,3 +1,5 @@
+These are the code we used in our dissertation. Functions of them are written below.
+
 1.MoveImgWithTxT
 We have implemented the function of randomly splitting the numbers of images into three datasets and named the python file as MoveImgWithTxT, as shown in Figure 3.2. We import the library of glob, random, argparse, and os in python in this code. Glob is used to return all the file paths that match a specific condition we want. Argparse is a built-in Python module for command item options and parameter parsing. Defining the parameters we need in the program will parse them from sys.argv and automatically generate help and usage information. Here we define the number as the number of images we want to split into another file. Source is the original dataset, and destination is the path where we split the images into. Os is the library that we use to determine whether the file or folder exists.
 
