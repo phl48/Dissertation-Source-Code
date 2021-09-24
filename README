@@ -1,0 +1,34 @@
+1.MoveImgWithTxT
+We have implemented the function of randomly splitting the numbers of images into three datasets and named the python file as MoveImgWithTxT, as shown in Figure 3.2. We import the library of glob, random, argparse, and os in python in this code. Glob is used to return all the file paths that match a specific condition we want. Argparse is a built-in Python module for command item options and parameter parsing. Defining the parameters we need in the program will parse them from sys.argv and automatically generate help and usage information. Here we define the number as the number of images we want to split into another file. Source is the original dataset, and destination is the path where we split the images into. Os is the library that we use to determine whether the file or folder exists.
+
+In all the datasets, each image has one text file with the same name rule. First, we read the whole text files in the source path and split the file names. For example, if there is a text file called abc.txt, there must be an image called abc.png. We split it as abc and txt, then find the same abc name ends with jpg, jpeg, or png file types. Finally, we move the image and text file to another file together.
+
+
+2.Convert-format 
+Convert-format is the file which we read the YOLO format in all the labeled images, as shown in Figure3.4. There is a space between each value which we use it to split and read the five values as label-line[0], label-line[1], label-line[2], and label-line[3], and label-line[4]. img-width and img-height are the width and height of the original images. Due to the values in YOLO format being all written in normalization, we need to multiply them by img-width and img-height, respectively, to get the real values of labeled objects. Finally, the actual width times actual height will get the area of each labeled object. All of the above codes are defined as images-annotations-info, and we apply them to the split-object code to calculate the area of the labeled objects.
+
+
+3.Split-object
+In Split-object file, we define the three classes, frisbee, kite, and baseball glove, as 0,1, and 2, respectively, which are the numbers we label all the images in the datasets, as shown in Figure 3.5. We also define the sizes of large, medium, and small objects as the above paragraph mentioned. We then create four folders which are large-object, medium-object, small-object, and don't-use. 
+
+Furthermore, we import images-annotations-info from the convert-format code to calculate the area of all the labeled objects and split the images into the corresponding folders, as shown in Figure 3.6. Although 75 images include different sizes of objects in the same ones, We put the new 75 images in the test dataset to replace those images in the don't-use folder to maintain a reliable analysis when we test the models. Finally, we have 140 images with large-size objects, 320 images with medium-size objects, and 275 images with small-size objects as our test dataset.
+
+
+4.Yolo-format
+In Yolo-format file, we define the YOLO format in normalization as images-annotations-yolo-info. It is similar as convert-format file, however, it remains the normalized values instead of transforming them to true ones, as shown in Figure 3.7. We only need the normalized values since we are not calculating the area of labeled objects here but just moving the bounding boxes of the labeled objects. Furthermore, we define a function called write-yolo, which is used in Augment-method code to write all the augmented values in the new text files.
+
+
+5.Augment-methods
+Augment-methods is the file we use all of the data augmentation from the libraries, as shown in Figure 3.8 and Figure 3.9. We define two functions as getTransform and getTransform-cut-grid. GetTransform is the function which we import the methods from Albumentations, while getTransform-cut-grid is the function which we import the methods from Imgaug. 
+
+There are some parameters we can adjust for our methods. In Figure 3.8, P means the percentage of images we want to augment in the datasets. Here we set P=1 as we always enhance the whole datasets. In method 1, multiplier is the density of the noise.
+
+
+6.Augment-image
+Augment-image is the main file that imports all the functions in other python codes and runs all the data augmentation methods, as shown in Figure 3.10. Line 25 is where we import images-annotations-yolo-info from the Yolo-format file to read the YOLO values in all the text files. From lines 29 to 40 are the codes which we import getTransform from the Augment-methods file to augment the images and change the values of bounding boxes in the text files. Then we save all the new data to the new folders.
+
+
+7.Cutout-gridmask
+Cutout-gridmask is the file we use for Cutout and Gridmask methods and is similar to the Augment-image file. We created this after the Augment-image file, so we did not combine them into one file. In Figure 3.11, lines 24, 28 and 29 are the switch lines for choosing Cutout or Gridmask. Since the Gridask method will return many results that we do not need, we add ['image'] to return only the array representing the pixel values of the augmented images. From lines 25 to 33, we use the getTransform-cut-grid function from the Augment-methods file and save the augmented images to the new folders. Furthermore, as they both only mask the images, which means the labeled objects will remain in the same position, we only need to copy the old values in text files and attach them with the augmented images as shown from lines 35 to 42.
+
+
