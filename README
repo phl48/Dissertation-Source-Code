@@ -1,4 +1,5 @@
 The original COCO dataset we used and all trained models are provided in this cloud links since they are too big to upload on moodle:
+https://drive.google.com/file/d/1KhBKCE9E7jxG77fzeAExmasHAbqj0Sr9/view?usp=sharing
 
 
 1. First, change the dataset path of split-object.py and run it to seperate the test dataset into large, medium, and small size folder.
