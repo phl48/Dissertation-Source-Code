@@ -1,7 +1,7 @@
 The original COCO dataset we used and all trained models are provided in this cloud links since they are too big to upload on moodle:
 
 
-1. First, change the dataset path of split-object and run it to seperate the test dataset into large, medium, and small size folder.
+1. First, change the dataset path of split-object.py and run it to seperate the test dataset into large, medium, and small size folder.
 2. Install and complie YOLOV4, and test all the trained models: (original source code https://github.com/AlexeyAB/darknet, and all specific steps are also explained in it)
     A. Download the fils in the above cloud links and put all .cfg files into cfg folder in darkent/cfg/
     B. Download the fils in the above cloud links and put all .weights files into weight folder in darkent/backup/
