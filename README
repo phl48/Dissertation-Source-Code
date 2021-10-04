@@ -8,8 +8,8 @@ https://drive.google.com/file/d/1KhBKCE9E7jxG77fzeAExmasHAbqj0Sr9/view?usp=shari
     B. Download the fils in the above cloud links and put all .weights files into weight folder in darkent/backup/
     C. Download the fils in the above cloud links and put .names file into data folder in darkent/data/
     D. Download the fils in the above cloud links and put all .data files into data folder in darkent/data/
-    E. Use create_testTxT.py to generate TEXT file for all the path of your test dataset and put it into data folder in darkent/data/
-    F. Change the path of train  = data/test-all.txt and valid  = data/test-all.txt in all test_xxx.data  if you generate the different file name in step D.
+    E. Use create_testTxT.py (provdied and explained at the end of README) to generate TEXT file for all the path of your test dataset and put it into data folder in darkent/data/
+    F. Change the path of train  = data/test-all.txt and valid  = data/test-all.txt in all test_xxx.data  if you generate the different file name in step E.
     G. Use the command to test our trained models then you will see the mAP and other results on the terminal: 
        Linux ./darknet detector map data/xxx.data cfg/xxx.cfg backup\xxx.weights
        Windows darknet.exe detector map data/xxx.data cfg/xxx.cfg backup\xxx.weights
