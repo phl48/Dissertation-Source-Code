@@ -1,4 +1,4 @@
-The original COCO dataset we used and all trained models are prrovided in this cloud links since they are too big to upload on moodle:
+The original COCO dataset we used and all trained models are provided in this cloud links since they are too big to upload on moodle:
 
 
 1. First, change the dataset path of split-object and run it to seperate the test dataset into large, medium, and small size folder.
