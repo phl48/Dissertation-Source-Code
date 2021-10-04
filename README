@@ -1,4 +1,17 @@
-The original COCO dataset we used and all trained models are prrovided in this cloud links since they are too big to upload on moodle.
+The original COCO dataset we used and all trained models are prrovided in this cloud links since they are too big to upload on moodle:
+
+
+1. First, change the dataset path of split-object and run it to seperate the test dataset into large, medium, and small size folder.
+2. Install and complie YOLOV4, and test all the trained models: (original source code https://github.com/AlexeyAB/darknet, and all specific steps are also explained in it)
+    A. Download the fils in the above cloud links and put all .cfg files into cfg folder in darkent/cfg/
+    B. Download the fils in the above cloud links and put all .weights files into weight folder in darkent/backup/
+    C. Download the fils in the above cloud links and put .names file into data folder in darkent/data/
+    D. Download the fils in the above cloud links and put all .data files into data folder in darkent/data/
+    E. Use create_testTxT.py to generate TEXT file for all the path of your test dataset and put it into data folder in darkent/data/
+    F. Change the path of train  = data/test-all.txt and valid  = data/test-all.txt in all test_xxx.data  if you generate the different file name in step D.
+    G. Use the command to test the models then you will see the mAP and other results on the terminal: 
+       Linux ./darknet detector map data/xxx.data cfg/xxx.cfg backup\xxx.weights
+       Windows darknet.exe detector map data/xxx.data cfg/xxx.cfg backup\xxx.weights
 
 
 
@@ -39,4 +52,5 @@ Augment-image is the main file that imports all the functions in other python co
 7.Cutout-gridmask
 Cutout-gridmask is the file we use for Cutout and Gridmask methods and is similar to the Augment-image file. We created this after the Augment-image file, so we did not combine them into one file. Lines 24, 28 and 29 are the switch lines for choosing Cutout or Gridmask. Since the Gridask method will return many results that we do not need, we add ['image'] to return only the array representing the pixel values of the augmented images. From lines 25 to 33, we use the getTransform-cut-grid function from the Augment-methods file and save the augmented images to the new folders. Furthermore, as they both only mask the images, which means the labeled objects will remain in the same position, we only need to copy the old values in text files and attach them with the augmented images as shown from lines 35 to 42.
 
-
+8.Create_testTxT
+This is the code to generate TEXT file which will includ all the paths of labeled images in your dataset for YOLOV4 framework to detect, train, and test the trained models afterwards.
